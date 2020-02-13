@@ -1,0 +1,63 @@
+@model Hotel.Models.PayModelView
+
+@{
+    ViewData["Title"] = "Pagar Reserva";
+}
+
+<h1>Pagar Reserva</h1>
+
+<div>
+    <h4>Reserva</h4>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.reserva.DataEntrada)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.reserva.DataEntrada)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.reserva.DataSaida)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.reserva.DataSaida)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.reserva.quarto.Numero)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.reserva.quarto.Numero)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.reserva.FezCheckin)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.reserva.FezCheckin)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.reserva.IncluiCafe)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.reserva.IncluiCafe)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.reserva.ValorPago)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.reserva.ValorPago)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.reserva.ValorTotal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.reserva.ValorTotal)
+        </dd>
+
+        <form asp-action="Pay" method="post">
+            <input type="hidden" asp-for="reserva.Id" />
+            <input min="0" max="ValorTotal" asp-for="valor"/>
+            <input type="submit" value="Pagar" class="btn btn-primary" />
+        </form>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>

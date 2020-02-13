@@ -1,0 +1,75 @@
+@model IEnumerable<Hotel.Models.Reserva>
+
+@{
+    ViewData["Title"] = "Hotel";
+}
+
+<h1>Gerenciamento de Reservas</h1>
+
+<p>
+    <a asp-action="Create">Nova Reserva</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DataEntrada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataSaida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quarto.Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FezCheckin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IncluiCafe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorPago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorTotal)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataEntrada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataSaida)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quarto.Numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FezCheckin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IncluiCafe)
+                </td>>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorPago)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorTotal)
+                </td>
+                <td>
+                    <a asp-action="Cancel" asp-route-id="@item.Id">Cancelar</a>
+                    @if(item.ValorPago == item.ValorTotal){
+                        <div>Pagar</div>
+                    } else{
+                        <a asp-action="Pay" asp-route-id="@item.Id">Pagar</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

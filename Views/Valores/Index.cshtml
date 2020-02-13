@@ -1,0 +1,45 @@
+@model Hotel.Models.Valores
+
+@{
+    ViewData["Title"] = "Valores";
+}
+
+<h1>Valores</h1>
+
+<form asp-action="Alterar">
+    <div class="form-group">
+        <label asp-for="ValorCamaSolteiro" class="control-label"></label>
+        <input asp-for="ValorCamaSolteiro" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ValorCamaCasal" class="control-label"></label>
+        <input asp-for="ValorCamaCasal" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ValorBanheiro" class="control-label"></label>
+        <input asp-for="ValorBanheiro" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ValorInternet" class="control-label"></label>
+        <input asp-for="ValorInternet" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ValorTv" class="control-label"></label>
+        <input asp-for="ValorTv" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ValorCafe" class="control-label"></label>
+        <input asp-for="ValorCafe" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PorcentagemPagamento" class="control-label"></label>
+        <input asp-for="PorcentagemPagamento" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ValorBase" class="control-label"></label>
+        <input asp-for="ValorBase" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Alterar" class="btn btn-primary" />
+    </div>
+</form>
