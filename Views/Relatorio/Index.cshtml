@@ -1,0 +1,40 @@
+@model Hotel.Models.RelatorioModelView
+
+@{
+    ViewData["Title"] = "Relatorio";
+}
+
+<h1>Relatorio</h1>
+
+<div>
+    <h4>Valores</h4>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ValorAtualMensal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ValorAtualMensal)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ValorFuturoMensal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ValorFuturoMensal)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ValorAtualAnual)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ValorAtualAnual)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ValorFuturoAnual)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ValorFuturoAnual)
+        </dd>
+       
+</div>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>

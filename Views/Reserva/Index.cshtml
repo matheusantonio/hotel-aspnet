@@ -68,6 +68,9 @@
                     } else{
                         <a asp-action="Pay" asp-route-id="@item.Id">Pagar</a>
                     }
+                    @if(!item.FezCheckin){
+                        <a asp-action="Checkin" asp-route-id="@item.Id">Checkin</a>
+                    }
                 </td>
             </tr>
         }

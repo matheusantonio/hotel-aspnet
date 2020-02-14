@@ -53,7 +53,11 @@
 
         <form asp-action="Pay" method="post">
             <input type="hidden" asp-for="reserva.Id" />
-            <input min="0" max="ValorTotal" asp-for="valor"/>
+            <input type="hidden" asp-for="Id" />
+            <div>
+                <input min="0" max="ValorTotal" asp-for="valor"/>
+                <span asp-validation-for="valor" class="text-danger"></span>
+            </div>
             <input type="submit" value="Pagar" class="btn btn-primary" />
         </form>
 </div>
@@ -61,3 +65,7 @@
 <div>
     <a asp-action="Index">Voltar</a>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

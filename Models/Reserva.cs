@@ -1,4 +1,5 @@
 using System;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,11 +13,14 @@ namespace Hotel.Models
         
         [Display(Name="Data de Entrada")]
         [DataType(DataType.Date)]
+        [Remote(action:"VerificarDataEntrada", controller: "Validation")]
         public DateTime DataEntrada {get; set;}
         
         [Display(Name="Data de Saída")]
         [DataType(DataType.Date)]
+        [Remote(action:"VerificarDatas", controller:"Validation", AdditionalFields = nameof(DataEntrada))]
         public DateTime DataSaida {get; set;}
+        
         [Display(Name="Café da manhã")]
         public bool IncluiCafe {get; set;}
         

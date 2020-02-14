@@ -48,11 +48,7 @@ namespace Hotel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("NumeroQuarto,DataEntrada,DataSaida,IncluiCafe,ValorPago")] CreateReservaModelView reservaModelView)
         {
-            if(ModelState.IsValid &&
-                validarPeriodoReserva(reservaModelView.DataEntrada,
-                                      reservaModelView.DataSaida,
-                                      reservaModelView.NumeroQuarto)
-              )
+            if(ModelState.IsValid)
             {
                 Quarto QuartoReservado = await _context.Quartos.FirstOrDefaultAsync(q => q.Numero == reservaModelView.NumeroQuarto);
                 
@@ -75,17 +71,13 @@ namespace Hotel.Controllers
             return View(reservaModelView);
         }
 
-        private bool validarPeriodoReserva(DateTime dataEntrada, DateTime dataSaida, int numeroQuarto)
-        {
-            return true;
-        }
-
         public async Task<IActionResult> Pay(string Id)
         {
             var reserva = await _context.Reservas.FindAsync(Id);
 
             PayModelView payment = new PayModelView{
                 reserva = reserva,
+                Id = reserva.Id,
                 valor = 0
             };
 
@@ -99,7 +91,7 @@ namespace Hotel.Controllers
             Reserva reserva = await _context.Reservas.FindAsync(pagamento.reserva.Id);
             Valores valores = await _values.getValues();
 
-            if(reserva.realizarPagamento(pagamento.valor, valores.PorcentagemPagamento))
+            if(ModelState.IsValid && reserva.realizarPagamento(pagamento.valor, valores.PorcentagemPagamento))
             {
                 _context.Reservas.Update(reserva);
                 await _context.SaveChangesAsync();
@@ -126,6 +118,28 @@ namespace Hotel.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Checkin(string Id)
+        {
+            var reserva = await _context.Reservas.FindAsync(Id);
+
+            return View(reserva);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ConfirmarCheckin(string Id)
+        {
+            var reserva = await _context.Reservas.FindAsync(Id);
+
+            reserva.FezCheckin = true;
+
+            _context.Reservas.Update(reserva);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
     
     }
 }

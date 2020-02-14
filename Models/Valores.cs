@@ -14,6 +14,7 @@ namespace Hotel.Models
         public decimal ValorInternet {get; set;}
         public decimal ValorTv {get; set;}
         public decimal ValorCafe {get; set;}
+        
         public decimal PorcentagemPagamento {get; set;}
         public decimal ValorBase {get; set;}
     }
